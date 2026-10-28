@@ -1,0 +1,55 @@
+{
+  "checked": "2026-10-28",
+  "identity": {
+    "company": "Стандарт Девелопмент",
+    "address": "Каспийск, ул. Абдулманапова, 6Б",
+    "website": "https://standart-develop.ru/"
+  },
+  "platforms": [
+    {
+      "name": "Яндекс Карты",
+      "rating": "4,5",
+      "ratings": 26,
+      "reviews": 9,
+      "url": "https://yandex.ru/maps/org/standart_development_ofis_prodazh/1880675750/reviews/"
+    },
+    {
+      "name": "2ГИС",
+      "rating": "5,0",
+      "ratings": 3,
+      "reviews": 1,
+      "url": "https://2gis.ru/kaspiysk/firm/70000001030448442/tab/reviews"
+    }
+  ],
+  "reviews": [
+    {
+      "author": "роза а.",
+      "text": "Отличная строительная компания, вежливые, доброжелательные.",
+      "source": "Яндекс Карты",
+      "url": "https://yandex.ru/maps/org/standart_development_ofis_prodazh/1880675750/reviews/",
+      "date": "5 октября"
+    },
+    {
+      "author": "Кнарик)",
+      "text": "сама живу в их доме,все устраивает!",
+      "source": "Яндекс Карты",
+      "url": "https://yandex.ru/maps/org/standart_development_ofis_prodazh/1880675750/reviews/",
+      "date": "11 февраля 2022"
+    },
+    {
+      "author": "Анонимный отзыв",
+      "text": "были со сроками задержки но результат порадовал клиентов.",
+      "source": "Яндекс Карты",
+      "url": "https://yandex.ru/maps/org/standart_development_ofis_prodazh/1880675750/reviews/",
+      "date": "26 января 2020"
+    },
+    {
+      "author": "Ёж .",
+      "text": "Мне всё понравилось",
+      "source": "2ГИС",
+      "url": "https://2gis.ru/kaspiysk/firm/70000001030448442/tab/reviews",
+      "date": ""
+    }
+  ],
+  "notes": "Короткие дословные выдержки. Рейтинг каждой отдельной записи не переносился: подтверждены агрегаты платформ. Год у отзыва роза а. в интерфейсе не указан. У 2ГИС дата в доступном интерфейсе не указана."
+}
