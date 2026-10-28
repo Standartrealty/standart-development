@@ -21,3 +21,18 @@ function renderHomePlans(){const filtered=homePlans.filter(p=>(planType==='all'|
 fetch('/home-plans.json').then(r=>{if(!r.ok)throw new Error('Plans unavailable');return r.json()}).then(data=>{const featured=['studia2946','2-roomapartment5373','2-roomapartment6455','1-roomapartment4502','3-roomapartment6952','4-roomapartment13611'];homePlans=[...featured.map(id=>data.find(x=>x.id===id)).filter(Boolean),...data.filter(x=>!featured.includes(x.id))];const options=[...new Map(data.map(x=>[x.projectId,x.project])).entries()];$('#plan-project').innerHTML='<option value="all">Все комплексы</option>'+options.map(([id,name])=>`<option value="${id}">${escape(name)}</option>`).join('');renderHomePlans()}).catch(()=>{$('#home-plan-grid').innerHTML='<p class="no-plans">Не удалось загрузить планировки. Позвоните в офис: <a href="tel:+79288000222">+7 (928) 800-02-22</a>.</p>';$('#plans-more').hidden=true});
 $$('[data-plan-filter]').forEach(b=>b.addEventListener('click',()=>{planType=b.dataset.planFilter;planLimit=6;$$('[data-plan-filter]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});renderHomePlans()}));$('#plan-project').addEventListener('change',e=>{planProject=e.target.value;planLimit=6;renderHomePlans()});$('#plans-more').addEventListener('click',()=>{planLimit+=6;renderHomePlans()});
 document.addEventListener('click',e=>{const button=e.target.closest('[data-contact-options]');if(button)openDialog(`<p class="eyebrow">STANDART DEVELOPMENT</p><h2 id="dialog-title">Давайте поговорим<br>о вашем доме.</h2><p class="dialog-intro">Выберите удобный офис и способ связи.</p><div class="contact-choice"><h3>Каспийск</h3><p>ул. Абулманапова, 6Б</p><div class="detail-actions"><a class="button gold" href="https://wa.me/79288000222" target="_blank" rel="noopener">WhatsApp ↗</a><a class="line-link" href="tel:+79288000222">Позвонить ↗</a></div></div><div class="contact-choice"><h3>Дербент</h3><p>ул. Гейдара Алиева, 6г</p><div class="detail-actions"><a class="button gold" href="https://wa.me/79298802222" target="_blank" rel="noopener">WhatsApp ↗</a><a class="line-link" href="tel:+79298802222">Позвонить ↗</a></div></div>`,button)});
+
+const heroFilm=$('#hero-video'),heroFilmToggle=$('#hero-video-toggle');
+if(heroFilm&&heroFilmToggle){
+ const staticFilm=matchMedia('(prefers-reduced-motion: reduce)').matches||navigator.connection?.saveData;
+ let filmWanted=!staticFilm,filmVisible=true,filmStarted=false;
+ function filmButton(playing){heroFilmToggle.hidden=false;heroFilmToggle.textContent=playing?'Ⅱ Пауза':'▷ Видео';heroFilmToggle.setAttribute('aria-label',playing?'Приостановить фоновое видео':'Воспроизвести фоновое видео')}
+ function playFilm(){if(!filmWanted||!filmVisible||document.hidden)return;if(!filmStarted){heroFilm.querySelector('source').src=heroFilm.querySelector('source').dataset.src;heroFilm.muted=true;heroFilm.load();filmStarted=true}heroFilm.play().catch(()=>{filmButton(false)})}
+ heroFilm.addEventListener('playing',()=>{heroFilm.classList.add('is-playing');filmButton(true)});
+ heroFilm.addEventListener('pause',()=>filmButton(false));
+ heroFilm.addEventListener('error',()=>{heroFilm.classList.remove('is-playing');heroFilmToggle.hidden=true});
+ heroFilmToggle.addEventListener('click',()=>{if(!heroFilm.paused){filmWanted=false;heroFilm.pause()}else{filmWanted=true;playFilm()}});
+ if(staticFilm)filmButton(false);else playFilm();
+ if('IntersectionObserver'in window){new IntersectionObserver(entries=>{filmVisible=entries[0].isIntersecting;if(filmVisible)playFilm();else heroFilm.pause()},{threshold:.05}).observe($('.hero'))}
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)heroFilm.pause();else playFilm()});
+}
