@@ -1,0 +1,20 @@
+User-Agent: *
+Disallow: /page114078546.html
+Disallow: /header
+Disallow: /page115302026.html
+Disallow: /footer
+Disallow: /page131203376.html
+Disallow: /mistake404
+Disallow: /tilda/form*
+Disallow: /tilda/rec*
+Disallow: /tilda/click*
+Disallow: /tilda/scroll*
+Disallow: /tilda/popup*
+Disallow: /tilda/cart*
+Disallow: /tilda/product*
+Disallow: /tilda/event*
+Disallow:
+
+
+Sitemap: https://standart-develop.ru/sitemap.xml
+Sitemap: https://standart-develop.ru/sitemap-store.xml
